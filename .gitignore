@@ -1,0 +1,83 @@
+# Dependencies
+/vendor/
+/node_modules/
+composer.lock
+package-lock.json
+yarn.lock
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Laravel
+.env
+.env.local
+.env.*.local
+.env.backup
+.phpunit.result.cache
+storage/
+bootstrap/cache/
+
+# Testing
+/build/
+/coverage/
+/.phpunit.cache
+/tests/fixtures/themes/
+/tests/temp/
+*.coverage
+
+# PHPStan
+/phpstan.neon.dist
+/phpstan-baseline.neon
+/.phpstan.cache
+
+# Pest
+/.pest
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled Assets
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/public/js/
+/public/css/
+
+# Development
+/workbench/
+.env.example
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Package Development
+/testbench.yaml
+/vendor-bin/
+/.testbench.cache
+
+# Cache Files
+.cache/
+.parcel-cache/
+
+# Documentation
+/docs/build/

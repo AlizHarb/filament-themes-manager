@@ -7,7 +7,8 @@ namespace Alizharb\FilamentThemesManager;
 use Illuminate\Support\ServiceProvider;
 use Alizharb\FilamentThemesManager\Commands\{
     ThemeInstallCommand,
-    ThemeCloneCommand
+    ThemeCloneCommand,
+    ThemeDebugCommand
 };
 use Alizharb\FilamentThemesManager\Services\ThemeManagerService;
 
@@ -160,6 +161,7 @@ class FilamentThemesManagerServiceProvider extends ServiceProvider
         $this->commands([
             ThemeInstallCommand::class,
             ThemeCloneCommand::class,
+            ThemeDebugCommand::class,
         ]);
     }
 
