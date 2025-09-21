@@ -1,0 +1,120 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out this form as completely as possible.
+
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before submitting your report
+      options:
+        - label: I have searched existing issues to ensure this bug hasn't been reported
+          required: true
+        - label: I have read the documentation
+          required: true
+        - label: I am using a supported version of the package
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A clear description of what you expected to happen
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Actual Behavior
+      description: A clear description of what actually happened
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Error Messages
+      description: Please copy and paste any relevant error messages or stack traces
+      render: text
+      placeholder: Paste error messages here...
+
+  - type: input
+    attributes:
+      label: Package Version
+      description: What version of filament-themes-manager are you using?
+      placeholder: e.g., 1.0.0
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Laravel Version
+      description: What version of Laravel are you using?
+      placeholder: e.g., 11.46.0
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Filament Version
+      description: What version of Filament are you using?
+      placeholder: e.g., 4.0.18
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: PHP Version
+      description: What version of PHP are you using?
+      placeholder: e.g., 8.3.0
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Any additional information that might help...
+
+  - type: textarea
+    attributes:
+      label: Possible Solution
+      description: If you have a suggestion for how to fix this bug, please describe it
+      placeholder: Optional - describe a potential solution...

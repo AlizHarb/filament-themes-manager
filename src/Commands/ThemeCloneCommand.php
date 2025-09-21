@@ -19,10 +19,10 @@ class ThemeCloneCommand extends Command
 
     public function handle(ThemeManagerService $service): int
     {
-        $sourceSlug = $this->argument('source');
-        $name = $this->argument('name');
-        $slug = $this->option('slug') ?? str($name)->slug();
-        $activate = $this->option('activate');
+        $sourceSlug = (string) $this->argument('source');
+        $name = (string) $this->argument('name');
+        $slug = $this->option('slug') ? (string) $this->option('slug') : str($name)->slug()->value();
+        $activate = (bool) $this->option('activate');
 
         $this->info("Cloning theme '{$sourceSlug}' to '{$name}'");
 

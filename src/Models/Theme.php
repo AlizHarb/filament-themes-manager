@@ -233,7 +233,8 @@ class Theme extends Model
     {
         try {
             $content = File::get($path);
-            return json_decode($content, true);
+            $decoded = json_decode($content, true);
+            return is_array($decoded) ? $decoded : null;
         } catch (\Exception) {
             return null;
         }
@@ -262,6 +263,7 @@ class Theme extends Model
     protected function getThemeErrors(string $directory, array $themeData): array
     {
         $errors = [];
+        /** @var array<string> $requiredFields */
         $requiredFields = config('filament-themes-manager.validation.required_fields', ['name', 'version']);
 
         foreach ($requiredFields as $field) {
@@ -275,11 +277,13 @@ class Theme extends Model
             $errors[] = 'Views directory is missing';
         }
 
-        if (!empty($themeData['assets'])) {
+        if (!empty($themeData['assets']) && is_array($themeData['assets'])) {
             foreach ($themeData['assets'] as $asset) {
-                $assetPath = $directory . DIRECTORY_SEPARATOR . $asset;
-                if (!File::exists($assetPath)) {
-                    $errors[] = "Asset file not found: {$asset}";
+                if (is_string($asset)) {
+                    $assetPath = $directory . DIRECTORY_SEPARATOR . $asset;
+                    if (!File::exists($assetPath)) {
+                        $errors[] = "Asset file not found: {$asset}";
+                    }
                 }
             }
         }
@@ -547,7 +551,9 @@ class Theme extends Model
      */
     public function isProtected(): bool
     {
-        return in_array($this->slug, config('filament-themes-manager.security.protected_themes', []));
+        /** @var array<string> $protectedThemes */
+        $protectedThemes = config('filament-themes-manager.security.protected_themes', []);
+        return in_array($this->slug, $protectedThemes, true);
     }
 
     /**

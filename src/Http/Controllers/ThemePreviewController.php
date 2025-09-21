@@ -6,6 +6,7 @@ namespace Alizharb\FilamentThemesManager\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\{RedirectResponse, Response};
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\Routing\Controller;
 use Alizharb\FilamentThemesManager\Models\Theme;
 use Alizharb\FilamentThemesManager\Services\ThemeManagerService;
@@ -93,7 +94,7 @@ class ThemePreviewController extends Controller
         abort(500, 'Failed to activate theme');
     }
 
-    public function screenshot(string $slug): Response
+    public function screenshot(string $slug): BinaryFileResponse
     {
         $theme = Theme::findData($slug);
 

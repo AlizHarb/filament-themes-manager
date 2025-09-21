@@ -6,6 +6,13 @@ namespace Alizharb\FilamentThemesManager\Data;
 
 class ThemeData
 {
+    /**
+     * @param array<string, mixed> $requirements
+     * @param array<string, mixed> $assets
+     * @param array<string, mixed> $supports
+     * @param array<string> $errors
+     * @param array<string, mixed> $metadata
+     */
     public function __construct(
         public readonly string $name,
         public readonly string $slug,
@@ -27,6 +34,9 @@ class ThemeData
         public readonly array $metadata = [],
     ) {}
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return [
@@ -58,7 +68,9 @@ class ThemeData
 
     public function isProtected(): bool
     {
-        return in_array($this->slug, config('filament-themes-manager.security.protected_themes', []));
+        /** @var array<string> $protectedThemes */
+        $protectedThemes = config('filament-themes-manager.security.protected_themes', []);
+        return in_array($this->slug, $protectedThemes, true);
     }
 
     public function hasScreenshot(): bool
@@ -87,7 +99,7 @@ class ThemeData
 
     public function supportsFeature(string $feature): bool
     {
-        return in_array($feature, $this->supports);
+        return in_array($feature, $this->supports, true);
     }
 
     public function meetsPHPRequirement(): bool
@@ -96,7 +108,12 @@ class ThemeData
             return true;
         }
 
-        return version_compare(PHP_VERSION, $this->requirements['php'], '>=');
+        $phpVersion = $this->requirements['php'];
+        if (!is_string($phpVersion)) {
+            return true;
+        }
+
+        return version_compare(PHP_VERSION, $phpVersion, '>=');
     }
 
     public function meetsLaravelRequirement(): bool
@@ -105,8 +122,13 @@ class ThemeData
             return true;
         }
 
+        $requiredVersion = $this->requirements['laravel'];
+        if (!is_string($requiredVersion)) {
+            return true;
+        }
+
         $laravelVersion = app()->version();
-        return version_compare($laravelVersion, $this->requirements['laravel'], '>=');
+        return version_compare($laravelVersion, $requiredVersion, '>=');
     }
 
     public function meetsAllRequirements(): bool

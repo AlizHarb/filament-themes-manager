@@ -50,7 +50,7 @@ class ThemeManager extends Page implements HasTable
                     ->label('')
                     ->getStateUsing(fn (Theme $record) => $record->hasScreenshot() ? $record->getScreenshotUrl() : null)
                     ->defaultImageUrl('/images/theme-placeholder.png')
-                    ->size(60)
+                    ->imageSize(60)
                     ->circular(false),
 
                 TextColumn::make('name')
@@ -216,13 +216,16 @@ class ThemeManager extends Page implements HasTable
                     ->color('warning')
                     ->action(fn () => $this->handleClearCache()),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     BulkAction::make('delete')
                         ->label(__('filament-themes-manager::theme.actions.delete'))
                         ->icon('heroicon-o-trash')
                         ->color('danger')
                         ->requiresConfirmation()
+                        ->modalHeading(__('filament-themes-manager::theme.actions.confirm_bulk_delete'))
+                        ->modalDescription(__('filament-themes-manager::theme.actions.confirm_bulk_delete_description'))
+                        ->modalSubmitActionLabel(__('filament-themes-manager::theme.actions.delete_selected'))
                         ->action(fn ($records) => $this->handleBulkDelete($records))
                         ->deselectRecordsAfterCompletion(),
                 ]),
@@ -342,42 +345,134 @@ class ThemeManager extends Page implements HasTable
 
     protected function handleDelete(string $slug): void
     {
-        if ($this->service->deleteTheme($slug)) {
-            Theme::refreshThemes();
+        try {
+            // Check if theme can be deleted
+            if (!$this->service->canDelete($slug)) {
+                Notification::make()
+                    ->title(__('filament-themes-manager::theme.notifications.theme_cannot_be_deleted'))
+                    ->body(__('filament-themes-manager::theme.notifications.theme_protected_or_active'))
+                    ->warning()
+                    ->send();
+                return;
+            }
 
-            Notification::make()
-                ->title(__('filament-themes-manager::theme.notifications.theme_deleted'))
-                ->success()
-                ->send();
+            if ($this->service->deleteTheme($slug)) {
+                Theme::refreshThemes();
 
-            $this->dispatch('refreshTable');
-        } else {
+                Notification::make()
+                    ->title(__('filament-themes-manager::theme.notifications.theme_deleted'))
+                    ->body(__('filament-themes-manager::theme.notifications.theme_deleted_successfully', ['slug' => $slug]))
+                    ->success()
+                    ->send();
+
+                $this->dispatch('refreshTable');
+            } else {
+                Notification::make()
+                    ->title(__('filament-themes-manager::theme.notifications.theme_deletion_failed'))
+                    ->body(__('filament-themes-manager::theme.notifications.theme_deletion_error', ['slug' => $slug]))
+                    ->danger()
+                    ->send();
+            }
+        } catch (\Exception $e) {
             Notification::make()
                 ->title(__('filament-themes-manager::theme.notifications.theme_deletion_failed'))
+                ->body(__('filament-themes-manager::theme.notifications.unexpected_error', ['error' => $e->getMessage()]))
                 ->danger()
                 ->send();
         }
     }
 
-    protected function handleBulkDelete($records): void
+    protected function handleBulkDelete(\Illuminate\Support\Collection<int, \Alizharb\FilamentThemesManager\Models\Theme> $records): void
     {
-        $count = 0;
+        $deletedCount = 0;
+        $skippedCount = 0;
+        $errorCount = 0;
+        $errors = [];
+        $skippedReasons = [];
 
         foreach ($records as $record) {
-            if ($this->service->deleteTheme($record->slug)) {
-                $count++;
+            try {
+                // Get detailed information about why theme can't be deleted
+                $activeTheme = $this->service->getActiveTheme();
+                $isActive = $activeTheme && $activeTheme->slug === $record->slug;
+                $isProtected = $this->service->getProtectedThemes();
+                $isProtectedTheme = in_array($record->slug, $isProtected, true);
+
+                // Check if theme can be deleted with detailed reason
+                if (!$this->service->canDelete($record->slug)) {
+                    $skippedCount++;
+
+                    // Determine the specific reason
+                    if ($isActive) {
+                        $skippedReasons[] = $record->slug . ' (active theme)';
+                    } elseif ($isProtectedTheme) {
+                        $skippedReasons[] = $record->slug . ' (protected)';
+                    } else {
+                        $skippedReasons[] = $record->slug . ' (unknown reason)';
+                    }
+                    continue;
+                }
+
+                if ($this->service->deleteTheme($record->slug)) {
+                    $deletedCount++;
+                } else {
+                    $errorCount++;
+                    $errors[] = $record->slug . ' (deletion failed)';
+                }
+            } catch (\Exception $e) {
+                $errorCount++;
+                $errors[] = $record->slug . ' (exception: ' . $e->getMessage() . ')';
             }
         }
 
-        if ($count > 0) {
+        // Refresh themes if any were deleted
+        if ($deletedCount > 0) {
             Theme::refreshThemes();
+            $this->dispatch('refreshTable');
+        }
 
+        // Show appropriate notification based on results
+        if ($deletedCount > 0 && $errorCount === 0 && $skippedCount === 0) {
+            // All themes deleted successfully
             Notification::make()
-                ->title(__('filament-themes-manager::theme.notifications.themes_deleted', ['count' => $count]))
+                ->title(__('filament-themes-manager::theme.notifications.themes_deleted', ['count' => $deletedCount]))
                 ->success()
                 ->send();
+        } elseif ($deletedCount > 0) {
+            // Some themes deleted, some had issues
+            $message = __('filament-themes-manager::theme.notifications.bulk_delete_partial', [
+                'deleted' => $deletedCount,
+                'skipped' => $skippedCount,
+                'errors' => $errorCount
+            ]);
 
-            $this->dispatch('refreshTable');
+            $details = [];
+            if (!empty($skippedReasons)) {
+                $details[] = 'Skipped: ' . implode(', ', $skippedReasons);
+            }
+            if (!empty($errors)) {
+                $details[] = 'Errors: ' . implode(', ', $errors);
+            }
+
+            if (!empty($details)) {
+                $message .= ' | ' . implode(' | ', $details);
+            }
+
+            Notification::make()
+                ->title(__('filament-themes-manager::theme.notifications.bulk_delete_completed'))
+                ->body($message)
+                ->warning()
+                ->send();
+        } else {
+            // No themes were deleted
+            $allDetails = array_merge($skippedReasons, $errors);
+            $detailMessage = !empty($allDetails) ? 'Details: ' . implode(', ', $allDetails) : '';
+
+            Notification::make()
+                ->title(__('filament-themes-manager::theme.notifications.no_themes_deleted'))
+                ->body(__('filament-themes-manager::theme.notifications.all_themes_protected_or_errors') . ' ' . $detailMessage)
+                ->danger()
+                ->send();
         }
     }
 
