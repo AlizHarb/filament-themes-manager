@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'table' => [
+        'theme_name' => '主题名称',
+        'version' => '版本',
+        'status' => '状态',
+        'validity' => '有效性',
+        'author' => '作者',
+        'path' => '路径',
+    ],
+    'actions' => [
+        'view' => '查看',
+        'activate' => '激活',
+        'preview' => '预览',
+        'clone' => '克隆',
+        'delete' => '删除',
+        'install' => '安装',
+        'refresh' => '刷新',
+        'clear_cache' => '清除缓存',
+    ],
+    'filters' => [
+        'status' => '状态',
+        'validity' => '有效性',
+        'name' => '名称',
+        'name_placeholder' => '按名称搜索...',
+    ],
+    'status' => [
+        'active' => '激活',
+        'inactive' => '未激活',
+        'valid' => '有效',
+        'invalid' => '无效',
+    ],
+    'notifications' => [
+        'theme_activated' => '主题激活成功。',
+        'theme_activation_failed' => '主题激活失败。',
+        'theme_protected' => '该主题已受保护。',
+        'theme_cannot_be_deactivated' => '无法停用该主题。',
+        'theme_cloned' => '主题克隆成功。',
+        'theme_clone_failed' => '主题克隆失败。',
+        'theme_installed' => '主题安装成功。',
+        'theme_installation_failed' => '主题安装失败。',
+        'theme_deleted' => '主题删除成功。',
+        'theme_deletion_failed' => '主题删除失败。',
+        'themes_deleted' => '成功删除 :count 个主题。',
+        'themes_refreshed' => '主题刷新成功。',
+        'cache_cleared' => '缓存清除成功。',
+        'cannot_deactivate_active' => '无法停用当前激活的主题。',
+        'cannot_deactivate_active_body' => '请先激活其他主题，然后再停用此主题。',
+    ],
+];

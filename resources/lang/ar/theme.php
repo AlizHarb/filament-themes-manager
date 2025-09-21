@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'table' => [
+        'theme_name' => 'اسم السمة',
+        'version' => 'الإصدار',
+        'status' => 'الحالة',
+        'validity' => 'الصلاحية',
+        'author' => 'المؤلف',
+        'path' => 'المسار',
+    ],
+    'actions' => [
+        'view' => 'عرض',
+        'activate' => 'تفعيل',
+        'preview' => 'معاينة',
+        'clone' => 'استنساخ',
+        'delete' => 'حذف',
+        'install' => 'تثبيت',
+        'refresh' => 'تحديث',
+        'clear_cache' => 'مسح التخزين المؤقت',
+    ],
+    'filters' => [
+        'status' => 'الحالة',
+        'validity' => 'الصلاحية',
+        'name' => 'الاسم',
+        'name_placeholder' => 'البحث بالاسم...',
+    ],
+    'status' => [
+        'active' => 'نشط',
+        'inactive' => 'غير نشط',
+        'valid' => 'صالح',
+        'invalid' => 'غير صالح',
+    ],
+    'notifications' => [
+        'theme_activated' => 'تم تفعيل السمة بنجاح.',
+        'theme_activation_failed' => 'فشل في تفعيل السمة.',
+        'theme_protected' => 'هذه السمة محمية.',
+        'theme_cannot_be_deactivated' => 'لا يمكن إلغاء تفعيل هذه السمة.',
+        'theme_cloned' => 'تم استنساخ السمة بنجاح.',
+        'theme_clone_failed' => 'فشل في استنساخ السمة.',
+        'theme_installed' => 'تم تثبيت السمة بنجاح.',
+        'theme_installation_failed' => 'فشل في تثبيت السمة.',
+        'theme_deleted' => 'تم حذف السمة بنجاح.',
+        'theme_deletion_failed' => 'فشل في حذف السمة.',
+        'themes_deleted' => ':count سمة تم حذفها بنجاح.',
+        'themes_refreshed' => 'تم تحديث السمات بنجاح.',
+        'cache_cleared' => 'تم مسح التخزين المؤقت بنجاح.',
+        'cannot_deactivate_active' => 'لا يمكن إلغاء تفعيل السمة النشطة.',
+        'cannot_deactivate_active_body' => 'يجب تفعيل سمة أخرى قبل إلغاء تفعيل هذه السمة.',
+    ],
+];

@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'table' => [
+        'theme_name' => 'Nom du thème',
+        'version' => 'Version',
+        'status' => 'Statut',
+        'validity' => 'Validité',
+        'author' => 'Auteur',
+        'path' => 'Chemin',
+    ],
+    'actions' => [
+        'view' => 'Voir',
+        'activate' => 'Activer',
+        'preview' => 'Aperçu',
+        'clone' => 'Cloner',
+        'delete' => 'Supprimer',
+        'install' => 'Installer',
+        'refresh' => 'Rafraîchir',
+        'clear_cache' => 'Vider le cache',
+    ],
+    'filters' => [
+        'status' => 'Statut',
+        'validity' => 'Validité',
+        'name' => 'Nom',
+        'name_placeholder' => 'Rechercher par nom...',
+    ],
+    'status' => [
+        'active' => 'Actif',
+        'inactive' => 'Inactif',
+        'valid' => 'Valide',
+        'invalid' => 'Invalide',
+    ],
+    'notifications' => [
+        'theme_activated' => 'Thème activé avec succès.',
+        'theme_activation_failed' => 'Échec de l’activation du thème.',
+        'theme_protected' => 'Ce thème est protégé.',
+        'theme_cannot_be_deactivated' => 'Impossible de désactiver ce thème.',
+        'theme_cloned' => 'Thème cloné avec succès.',
+        'theme_clone_failed' => 'Échec du clonage du thème.',
+        'theme_installed' => 'Thème installé avec succès.',
+        'theme_installation_failed' => 'Échec de l’installation du thème.',
+        'theme_deleted' => 'Thème supprimé avec succès.',
+        'theme_deletion_failed' => 'Échec de la suppression du thème.',
+        'themes_deleted' => ':count thèmes supprimés avec succès.',
+        'themes_refreshed' => 'Thèmes rafraîchis avec succès.',
+        'cache_cleared' => 'Cache vidé avec succès.',
+        'cannot_deactivate_active' => 'Impossible de désactiver le thème actif.',
+        'cannot_deactivate_active_body' => 'Vous devez activer un autre thème avant de désactiver celui-ci.',
+    ],
+];

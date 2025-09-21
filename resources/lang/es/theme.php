@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'table' => [
+        'theme_name' => 'Nombre del tema',
+        'version' => 'Versión',
+        'status' => 'Estado',
+        'validity' => 'Validez',
+        'author' => 'Autor',
+        'path' => 'Ruta',
+    ],
+    'actions' => [
+        'view' => 'Ver',
+        'activate' => 'Activar',
+        'preview' => 'Vista previa',
+        'clone' => 'Clonar',
+        'delete' => 'Eliminar',
+        'install' => 'Instalar',
+        'refresh' => 'Actualizar',
+        'clear_cache' => 'Limpiar caché',
+    ],
+    'filters' => [
+        'status' => 'Estado',
+        'validity' => 'Validez',
+        'name' => 'Nombre',
+        'name_placeholder' => 'Buscar por nombre...',
+    ],
+    'status' => [
+        'active' => 'Activo',
+        'inactive' => 'Inactivo',
+        'valid' => 'Válido',
+        'invalid' => 'Inválido',
+    ],
+    'notifications' => [
+        'theme_activated' => 'Tema activado correctamente.',
+        'theme_activation_failed' => 'Error al activar el tema.',
+        'theme_protected' => 'Este tema está protegido.',
+        'theme_cannot_be_deactivated' => 'No se puede desactivar este tema.',
+        'theme_cloned' => 'Tema clonado correctamente.',
+        'theme_clone_failed' => 'Error al clonar el tema.',
+        'theme_installed' => 'Tema instalado correctamente.',
+        'theme_installation_failed' => 'Error al instalar el tema.',
+        'theme_deleted' => 'Tema eliminado correctamente.',
+        'theme_deletion_failed' => 'Error al eliminar el tema.',
+        'themes_deleted' => ':count temas eliminados correctamente.',
+        'themes_refreshed' => 'Temas actualizados correctamente.',
+        'cache_cleared' => 'Caché limpiada correctamente.',
+        'cannot_deactivate_active' => 'No se puede desactivar el tema activo.',
+        'cannot_deactivate_active_body' => 'Debe activar otro tema antes de desactivar este.',
+    ],
+];

@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'table' => [
+        'theme_name' => 'थीम नाम',
+        'version' => 'संस्करण',
+        'status' => 'स्थिति',
+        'validity' => 'वैधता',
+        'author' => 'लेखक',
+        'path' => 'पथ',
+    ],
+    'actions' => [
+        'view' => 'देखें',
+        'activate' => 'सक्रिय करें',
+        'preview' => 'पूर्वावलोकन',
+        'clone' => 'क्लोन',
+        'delete' => 'हटाएं',
+        'install' => 'इंस्टॉल करें',
+        'refresh' => 'रिफ्रेश करें',
+        'clear_cache' => 'कैश साफ करें',
+    ],
+    'filters' => [
+        'status' => 'स्थिति',
+        'validity' => 'वैधता',
+        'name' => 'नाम',
+        'name_placeholder' => 'नाम से खोजें...',
+    ],
+    'status' => [
+        'active' => 'सक्रिय',
+        'inactive' => 'निष्क्रिय',
+        'valid' => 'वैध',
+        'invalid' => 'अवैध',
+    ],
+    'notifications' => [
+        'theme_activated' => 'थीम सफलतापूर्वक सक्रिय किया गया।',
+        'theme_activation_failed' => 'थीम सक्रिय करने में विफल।',
+        'theme_protected' => 'यह थीम संरक्षित है।',
+        'theme_cannot_be_deactivated' => 'थीम को निष्क्रिय नहीं किया जा सकता।',
+        'theme_cloned' => 'थीम सफलतापूर्वक क्लोन किया गया।',
+        'theme_clone_failed' => 'थीम क्लोन करने में विफल।',
+        'theme_installed' => 'थीम सफलतापूर्वक इंस्टॉल किया गया।',
+        'theme_installation_failed' => 'थीम इंस्टॉल करने में विफल।',
+        'theme_deleted' => 'थीम सफलतापूर्वक हटाया गया।',
+        'theme_deletion_failed' => 'थीम हटाने में विफल।',
+        'themes_deleted' => ':count थीम सफलतापूर्वक हटाए गए।',
+        'themes_refreshed' => 'थीम सफलतापूर्वक रिफ्रेश किए गए।',
+        'cache_cleared' => 'कैश सफलतापूर्वक साफ किया गया।',
+        'cannot_deactivate_active' => 'सक्रिय थीम को निष्क्रिय नहीं किया जा सकता।',
+        'cannot_deactivate_active_body' => 'इससे पहले किसी अन्य थीम को सक्रिय करें।',
+    ],
+];

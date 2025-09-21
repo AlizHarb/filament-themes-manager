@@ -1,0 +1,93 @@
+{
+    "name": "alizharb/filament-themes-manager",
+    "description": "Advanced theme management system for Laravel Filament with Sushi-powered in-memory storage",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "filament",
+        "themes",
+        "ui",
+        "admin",
+        "package",
+        "theme-manager",
+        "sushi"
+    ],
+    "homepage": "https://github.com/alizharb/filament-themes-manager",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ali Harb",
+            "email": "harbzali@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2|^8.3|^8.4",
+        "laravel/framework": "^11.0|^12.0",
+        "filament/filament": "^4.0",
+        "calebporzio/sushi": "^2.5",
+        "qirolab/laravel-themer": "^2.0",
+        "illuminate/contracts": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "phpunit/phpunit": "^11.0|^12.0",
+        "nunomaduro/collision": "^8.0",
+        "larastan/larastan": "^2.9",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "rector/rector": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alizharb\\FilamentThemesManager\\": "src/",
+            "Alizharb\\FilamentThemesManager\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alizharb\\FilamentThemesManager\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": [
+            "@composer run prepare",
+            "@php vendor/bin/testbench workbench:build --ansi"
+        ],
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "@composer run build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/rector process"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alizharb\\FilamentThemesManager\\FilamentThemesManagerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
