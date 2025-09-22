@@ -7,8 +7,8 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/alizharb/filament-themes-manager.svg?style=flat-square)](https://packagist.org/packages/alizharb/filament-themes-manager)
 [![Total Downloads](https://img.shields.io/packagist/dt/alizharb/filament-themes-manager.svg?style=flat-square)](https://packagist.org/packages/alizharb/filament-themes-manager)
 [![License](https://img.shields.io/packagist/l/alizharb/filament-themes-manager.svg?style=flat-square)](https://github.com/alizharb/filament-themes-manager/blob/main/LICENSE.md)
-[![GitHub Stars](https://img.shields.io/github/stars/AlizHarb/filament-themes-manager.svg?style=for-the-badge&color=yellow)](https://github.com/AlizHarb/filament-themes-manager/stargazers)
-[![PHP Version](https://img.shields.io/packagist/php-v/alizharb/filament-themes-manager.svg?style=for-the-badge&color=purple)](https://packagist.org/packages/alizharb/filament-themes-manager)
+[![GitHub Stars](https://img.shields.io/github/stars/AlizHarb/filament-themes-manager.svg?style=style=flat-square&color=yellow)](https://github.com/AlizHarb/filament-themes-manager/stargazers)
+[![PHP Version](https://img.shields.io/packagist/php-v/alizharb/filament-themes-manager.svg?style=style=flat-square&color=purple)](https://packagist.org/packages/alizharb/filament-themes-manager)
 
 </div>
 
