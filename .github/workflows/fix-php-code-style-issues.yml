@@ -3,7 +3,7 @@ name: Fix PHP code style issues
 on:
   push:
     paths:
-      - '**.php'
+      - "**.php"
 
 permissions:
   contents: write
@@ -21,16 +21,8 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: "8.3"
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
 
       - name: Install dependencies
         run: composer update --prefer-stable --prefer-dist --no-interaction
-
-      - name: Run Laravel Pint
-        run: vendor/bin/pint
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Fix styling

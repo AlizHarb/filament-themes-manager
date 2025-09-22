@@ -6,6 +6,10 @@ use Alizharb\FilamentThemesManager\Services\ThemeManagerService;
 use Alizharb\FilamentThemesManager\Models\Theme;
 use Alizharb\FilamentThemesManager\Data\ThemeData;
 use Illuminate\Support\Facades\File;
+<<<<<<< HEAD
+=======
+use ZipArchive;
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
 
 describe('ThemeManagerService', function () {
     beforeEach(function () {
@@ -96,9 +100,14 @@ describe('ThemeManagerService', function () {
 
         expect($result)->toBeTrue();
 
+<<<<<<< HEAD
         // Check that the theme directory has been removed
         $themePath = __DIR__ . '/../fixtures/themes/deletable-theme';
         expect(file_exists($themePath))->toBeFalse();
+=======
+        $theme = Theme::find('deletable-theme');
+        expect($theme)->toBeNull();
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
     });
 
     it('cannot delete protected theme', function () {
@@ -168,7 +177,11 @@ describe('ThemeManagerService', function () {
     });
 
     it('can clear cache', function () {
+<<<<<<< HEAD
         expect(fn() => $this->service->clearCache())->not->toThrow(\Exception::class);
+=======
+        expect(fn() => $this->service->clearCache())->not->toThrow();
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
     });
 
     it('can check if theme can be deleted', function () {
@@ -198,8 +211,13 @@ describe('ThemeManagerService', function () {
 
         // Create ZIP file
         $zipPath = sys_get_temp_dir() . '/test_theme_' . uniqid() . '.zip';
+<<<<<<< HEAD
         $zip = new \ZipArchive();
         $zip->open($zipPath, \ZipArchive::CREATE);
+=======
+        $zip = new ZipArchive();
+        $zip->open($zipPath, ZipArchive::CREATE);
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
 
         $files = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($tempDir),

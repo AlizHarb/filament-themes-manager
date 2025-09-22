@@ -175,10 +175,18 @@ describe('Theme Model', function () {
         // Load themes to populate cache
         Theme::all();
 
+<<<<<<< HEAD
         expect(fn() => Theme::clearCache())->not->toThrow(\Exception::class);
     });
 
     it('can refresh themes', function () {
         expect(fn() => Theme::refreshThemes())->not->toThrow(\Exception::class);
+=======
+        expect(fn() => Theme::clearCache())->not->toThrow();
+    });
+
+    it('can refresh themes', function () {
+        expect(fn() => Theme::refreshThemes())->not->toThrow();
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
     });
 });

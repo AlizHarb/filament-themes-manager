@@ -382,7 +382,7 @@ class ThemeManager extends Page implements HasTable
         }
     }
 
-    protected function handleBulkDelete(\Illuminate\Support\Collection<int, \Alizharb\FilamentThemesManager\Models\Theme> $records): void
+    protected function handleBulkDelete(\Illuminate\Support\Collection $records, \Alizharb\FilamentThemesManager\Models\Theme $theme): void
     {
         $deletedCount = 0;
         $skippedCount = 0;

@@ -18,9 +18,26 @@ describe('Theme Commands', function () {
         $command = new ThemeCloneCommand();
 
         expect($command->getName())->toBe('theme:clone')
+<<<<<<< HEAD
             ->and($command->getDescription())->toContain('Clone an existing theme');
     });
 
+=======
+            ->and($command->getDescription())->toContain('Clone a theme');
+    });
+
+    it('install command has correct signature', function () {
+        $this->artisan('theme:install --help')
+            ->expectsOutput('Install a theme from various sources')
+            ->assertExitCode(0);
+    });
+
+    it('clone command has correct signature', function () {
+        $this->artisan('theme:clone --help')
+            ->expectsOutput('Clone an existing theme')
+            ->assertExitCode(0);
+    });
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
 
     it('can clone theme via command', function () {
         $newThemeSlug = 'command-cloned-theme';
@@ -29,8 +46,13 @@ describe('Theme Commands', function () {
 
         $this->artisan('theme:clone', [
             'source' => 'default',
+<<<<<<< HEAD
             'name' => 'Command Cloned Theme',
             '--slug' => $newThemeSlug,
+=======
+            'target' => $newThemeSlug,
+            '--name' => 'Command Cloned Theme',
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
         ])->assertExitCode(0);
 
         expect(File::exists($newThemePath))->toBeTrue()
@@ -50,16 +72,26 @@ describe('Theme Commands', function () {
     it('clone command fails with invalid source', function () {
         $this->artisan('theme:clone', [
             'source' => 'non-existent-theme',
+<<<<<<< HEAD
             'name' => 'New Theme',
             '--slug' => 'new-theme',
+=======
+            'target' => 'new-theme',
+            '--name' => 'New Theme',
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
         ])->assertExitCode(1);
     });
 
     it('clone command fails with existing target', function () {
         $this->artisan('theme:clone', [
             'source' => 'default',
+<<<<<<< HEAD
             'name' => 'Existing Theme',
             '--slug' => 'test-theme', // Already exists
+=======
+            'target' => 'test-theme', // Already exists
+            '--name' => 'Existing Theme',
+>>>>>>> ea01d2758692da0be7cd5c527eadfdf7938c7ebc
         ])->assertExitCode(1);
     });
 
