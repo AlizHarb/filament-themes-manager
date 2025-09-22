@@ -5,10 +5,10 @@
 <img src="https://banners.beyondco.de/Filament%20Themes%20Manager.jpeg?theme=light&packageManager=composer+require&packageName=alizharb%2Ffilament-themes-manager&pattern=architect&style=style_1&description=Filament-powered+admin+panel+to+effortlessly+install%2C+preview%2C+and+manage+themes.&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg" alt="Filament Themes Manager">
     
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/alizharb/filament-themes-manager.svg?style=flat-square)](https://packagist.org/packages/alizharb/filament-themes-manager)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/alizharb/filament-themes-manager/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/alizharb/filament-themes-manager/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/alizharb/filament-themes-manager/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/alizharb/filament-themes-manager/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/alizharb/filament-themes-manager.svg?style=flat-square)](https://packagist.org/packages/alizharb/filament-themes-manager)
 [![License](https://img.shields.io/packagist/l/alizharb/filament-themes-manager.svg?style=flat-square)](https://github.com/alizharb/filament-themes-manager/blob/main/LICENSE.md)
+[![GitHub Stars](https://img.shields.io/github/stars/AlizHarb/filament-themes-manager.svg?style=for-the-badge&color=yellow)](https://github.com/AlizHarb/filament-themes-manager/stargazers)
+[![PHP Version](https://img.shields.io/packagist/php-v/alizharb/filament-themes-manager.svg?style=for-the-badge&color=purple)](https://packagist.org/packages/alizharb/filament-themes-manager)
 
 </div>
 
@@ -55,12 +55,12 @@ Built to seamlessly integrate with `qirolab/laravel-themer`, this package provid
 
 ## 📋 System Requirements
 
-| Component          | Version        |
-| ------------------ | -------------- |
+| Component          | Version            |
+| ------------------ | ------------------ |
 | **PHP**            | `^8.2\|^8.3\|^8.4` |
-| **Laravel**        | `^11.0\|^12.0`   |
-| **Filament**       | `^4.0`         |
-| **Laravel Themer** | `^2.0`         |
+| **Laravel**        | `^11.0\|^12.0`     |
+| **Filament**       | `^4.0`             |
+| **Laravel Themer** | `^2.0`             |
 
 ---
 
